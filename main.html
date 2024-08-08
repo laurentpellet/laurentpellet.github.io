@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Teiki Heinis">
+<meta name="dcterms.date" content="2024-08-07">
+
+<title>Un modèle hédonique des loyers sur Tahiti et Moorea</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="main_files/libs/clipboard/clipboard.min.js"></script>
+<script src="main_files/libs/quarto-html/quarto.js"></script>
+<script src="main_files/libs/quarto-html/popper.min.js"></script>
+<script src="main_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="main_files/libs/quarto-html/anchor.min.js"></script>
+<link href="main_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="main_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="main_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="main_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="main_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="main_files/libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+
+<script src="main_files/libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Un modèle hédonique des loyers sur Tahiti et Moorea</h1>
+                      </div>
+  </div>
+    
+  <div class="quarto-title-meta-author">
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-heading">Affiliation</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author">Teiki Heinis </p>
+    </div>
+    <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              élève ENSAE
+            </p>
+        </div>
+    </div>
+
+  <div class="quarto-title-meta">
+
+        
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">August 7, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  <div>
+    <div class="abstract">
+      <div class="block-title">Présentation</div>
+      <p>On réalise un modèle hédonique des loyer sur Tahiti et Moorea. Ce travail est un tentative de reproduction d’un travail de l’Office Fédérale Suisse.</p>
+    </div>
+  </div>
+  
+  </header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+  <li><a href="#résumé" id="toc-résumé" class="nav-link active" data-scroll-target="#résumé"><span class="header-section-number">1</span> <span class="smallcaps">Résumé</span></a></li>
+  <li><a href="#avant-propos" id="toc-avant-propos" class="nav-link" data-scroll-target="#avant-propos"><span class="header-section-number">2</span> <span class="smallcaps">Avant-propos</span></a>
+  <ul class="collapse">
+  <li><a href="#motivation-objectif" id="toc-motivation-objectif" class="nav-link" data-scroll-target="#motivation-objectif"><span class="header-section-number">2.1</span> <span class="smallcaps">Motivation &amp; objectif</span></a></li>
+  <li><a href="#théorie-de-la-demande-hédonique" id="toc-théorie-de-la-demande-hédonique" class="nav-link" data-scroll-target="#théorie-de-la-demande-hédonique"><span class="header-section-number">2.2</span> <span class="smallcaps">Théorie de la demande hédonique</span></a></li>
+  <li><a href="#enquête-loyers-et-charge-de-lispf" id="toc-enquête-loyers-et-charge-de-lispf" class="nav-link" data-scroll-target="#enquête-loyers-et-charge-de-lispf"><span class="header-section-number">2.3</span> <span class="smallcaps">Enquête Loyers et Charge de l’ISPF</span></a></li>
+  </ul></li>
+  <li><a href="#méthodologie" id="toc-méthodologie" class="nav-link" data-scroll-target="#méthodologie"><span class="header-section-number">3</span> <span class="smallcaps">Méthodologie</span></a>
+  <ul class="collapse">
+  <li><a href="#traitement-des-données" id="toc-traitement-des-données" class="nav-link" data-scroll-target="#traitement-des-données"><span class="header-section-number">3.1</span> <span class="smallcaps">Traitement des données</span></a></li>
+  <li><a href="#détermination-du-modèle" id="toc-détermination-du-modèle" class="nav-link" data-scroll-target="#détermination-du-modèle"><span class="header-section-number">3.2</span> <span class="smallcaps">Détermination du modèle</span></a></li>
+  </ul></li>
+  <li><a href="#modèle" id="toc-modèle" class="nav-link" data-scroll-target="#modèle"><span class="header-section-number">4</span> <span class="smallcaps">Modèle</span></a>
+  <ul class="collapse">
+  <li><a href="#forme-du-modèle" id="toc-forme-du-modèle" class="nav-link" data-scroll-target="#forme-du-modèle"><span class="header-section-number">4.1</span> <span class="smallcaps">Forme du modèle</span></a></li>
+  <li><a href="#détails-des-variables" id="toc-détails-des-variables" class="nav-link" data-scroll-target="#détails-des-variables"><span class="header-section-number">4.2</span> <span class="smallcaps">Détails des variables</span></a></li>
+  <li><a href="#analyse-du-modèle" id="toc-analyse-du-modèle" class="nav-link" data-scroll-target="#analyse-du-modèle"><span class="header-section-number">4.3</span> <span class="smallcaps">Analyse du modèle</span></a></li>
+  </ul></li>
+  <li><a href="#conclusion-et-ouverture" id="toc-conclusion-et-ouverture" class="nav-link" data-scroll-target="#conclusion-et-ouverture"><span class="header-section-number">5</span> <span class="smallcaps">Conclusion et ouverture</span></a>
+  <ul class="collapse">
+  <li><a href="#limites" id="toc-limites" class="nav-link" data-scroll-target="#limites"><span class="header-section-number">5.1</span> <span class="smallcaps">Limites</span></a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">5.2</span> <span class="smallcaps">Conclusion</span></a></li>
+  <li><a href="#ouverture" id="toc-ouverture" class="nav-link" data-scroll-target="#ouverture"><span class="header-section-number">5.3</span> <span class="smallcaps">ouverture</span></a></li>
+  </ul></li>
+  <li><a href="#annexe" id="toc-annexe" class="nav-link" data-scroll-target="#annexe"><span class="header-section-number">6</span> <span class="smallcaps">Annexe</span></a>
+  <ul class="collapse">
+  <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables"><span class="header-section-number">6.1</span> <span class="smallcaps">Variables</span></a></li>
+  <li><a href="#paquets-de-variables" id="toc-paquets-de-variables" class="nav-link" data-scroll-target="#paquets-de-variables"><span class="header-section-number">6.2</span> <span class="smallcaps">Paquets de variables</span></a></li>
+  <li><a href="#modèle-1" id="toc-modèle-1" class="nav-link" data-scroll-target="#modèle-1"><span class="header-section-number">6.3</span> <span class="smallcaps">Modèle</span></a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/ISPF/stage-teiki/tree/main/src/projet%202"><i class="bi bi-file-code"></i>Code repository</a></li></ul></div></nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<nav id="TOC-body" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#résumé" id="toc-résumé"><span class="header-section-number">1</span> <span class="smallcaps">Résumé</span></a></li>
+  <li><a href="#avant-propos" id="toc-avant-propos"><span class="header-section-number">2</span> <span class="smallcaps">Avant-propos</span></a>
+  <ul>
+  <li><a href="#motivation-objectif" id="toc-motivation-objectif"><span class="header-section-number">2.1</span> <span class="smallcaps">Motivation &amp; objectif</span></a></li>
+  <li><a href="#théorie-de-la-demande-hédonique" id="toc-théorie-de-la-demande-hédonique"><span class="header-section-number">2.2</span> <span class="smallcaps">Théorie de la demande hédonique</span></a></li>
+  <li><a href="#enquête-loyers-et-charge-de-lispf" id="toc-enquête-loyers-et-charge-de-lispf"><span class="header-section-number">2.3</span> <span class="smallcaps">Enquête Loyers et Charge de l’ISPF</span></a></li>
+  </ul></li>
+  <li><a href="#méthodologie" id="toc-méthodologie"><span class="header-section-number">3</span> <span class="smallcaps">Méthodologie</span></a>
+  <ul>
+  <li><a href="#traitement-des-données" id="toc-traitement-des-données"><span class="header-section-number">3.1</span> <span class="smallcaps">Traitement des données</span></a></li>
+  <li><a href="#détermination-du-modèle" id="toc-détermination-du-modèle"><span class="header-section-number">3.2</span> <span class="smallcaps">Détermination du modèle</span></a></li>
+  </ul></li>
+  <li><a href="#modèle" id="toc-modèle"><span class="header-section-number">4</span> <span class="smallcaps">Modèle</span></a>
+  <ul>
+  <li><a href="#forme-du-modèle" id="toc-forme-du-modèle"><span class="header-section-number">4.1</span> <span class="smallcaps">Forme du modèle</span></a></li>
+  <li><a href="#détails-des-variables" id="toc-détails-des-variables"><span class="header-section-number">4.2</span> <span class="smallcaps">Détails des variables</span></a></li>
+  <li><a href="#analyse-du-modèle" id="toc-analyse-du-modèle"><span class="header-section-number">4.3</span> <span class="smallcaps">Analyse du modèle</span></a></li>
+  </ul></li>
+  <li><a href="#conclusion-et-ouverture" id="toc-conclusion-et-ouverture"><span class="header-section-number">5</span> <span class="smallcaps">Conclusion et ouverture</span></a>
+  <ul>
+  <li><a href="#limites" id="toc-limites"><span class="header-section-number">5.1</span> <span class="smallcaps">Limites</span></a></li>
+  <li><a href="#conclusion" id="toc-conclusion"><span class="header-section-number">5.2</span> <span class="smallcaps">Conclusion</span></a></li>
+  <li><a href="#ouverture" id="toc-ouverture"><span class="header-section-number">5.3</span> <span class="smallcaps">ouverture</span></a></li>
+  </ul></li>
+  <li><a href="#annexe" id="toc-annexe"><span class="header-section-number">6</span> <span class="smallcaps">Annexe</span></a>
+  <ul>
+  <li><a href="#variables" id="toc-variables"><span class="header-section-number">6.1</span> <span class="smallcaps">Variables</span></a></li>
+  <li><a href="#paquets-de-variables" id="toc-paquets-de-variables"><span class="header-section-number">6.2</span> <span class="smallcaps">Paquets de variables</span></a></li>
+  <li><a href="#modèle-1" id="toc-modèle-1"><span class="header-section-number">6.3</span> <span class="smallcaps">Modèle</span></a></li>
+  </ul></li>
+  </ul>
+</nav>
+<div class="cell">
+<style type="text/css">
+p {
+  text-align: justify
+}
+</style>
+</div>
+<section id="résumé" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> <span class="smallcaps">Résumé</span></h1>
+<p>L’objectif de ce travail est de construire un modèle hédonique des loyers sur Tahiti et Moorea, c’est-à-dire trouver une fonction des caractéristique du logement permettant d’estimer le loyer de celui-ci. Ce travail est une tentative de reproduire un travail similaire de l’Office Fédérale Suisse présenté dans le rapport <u>Fourcade, L. (2022), <em>Indice des loyers : rapport méthodologique</em>, Publication OFS</u>.</p>
+<p>Le modèle construit est Log-linéaire. Sa forme est décrite ci-dessous, à savoir que certaine caractéristique des logements ne sont pas codées par une seule variables mais par plusieurs variables indicatrices (<em>dummy variables</em>) des différentes modalités de ces caractéristiques. Les coefficients du modèles sont présentés en annexe [<span class="smallcaps"><strong>Modèle</strong></span>]. Les coefficients du modèles ont étés estimé par la méthode des carrés ordinaire en prenant 10906 observation de loyers sur 810 logements différents.<br>
+<span class="math display">
+\begin{align*}
+\log(\mathrm{loyer}) =&amp;\beta_0 + \beta_1 \; \mathrm{Commune} &amp; \\
+&amp;+ \beta_2 \; \mathrm{Nombre\ de\ chambe} \;+ \beta_3 \; \mathrm{Surface\ habitable}\\
+&amp;+ \beta_4 \; \mathrm{meublé} \;+ \beta_5 \; \mathrm{Propriétaire}\\
+&amp;+ \beta_6 \; \mathrm{Bureau} \;+ \beta_7 \; \mathrm{Piscine} \; + \beta_8 \; \mathrm{type\ de\ construction}\\
+&amp;+\beta_9 \; \mathrm{Taxes} \;+ \beta_{10} \; \mathrm{Entetien\ jardin} \;+ \beta_{11} \; \mathrm{Charges\ eau}\;+ \beta_{12} \; \mathrm{charges\ ordures} \;+ \beta_{13} \; \mathrm{Autres\ charges}\\
+&amp;+ \varepsilon
+\end{align*}
+</span></p>
+<p>Le <span class="math inline">R^2</span> ajusté de ce modèle est de 0.7651 sur les données d’entraînement mais chute à 0.6120 sur des données différentes ce qui semble indiquer un léger <em>overfit</em>. Le modèle reste tout de même assez performant, ayant une erreur moyenne d’estimation des loyers de 20 000 xpf environ.</p>
+<p>Les résidus ont une espérance nulle, ne sont pas corrélé aux estimation des loyers, ne suivent pas une loi normale et n’ont pas une variance constante (hétéroscédasticité). L’hétéroscédasticité et la non normalité invalide les t-test des coefficients du modèles.<br>
+Cependant, les résidus suivent une distribution presque normale et ont une variance qui semble assez stable (faible hétéroscédasticité), aussi il convient de modérer cette source d’erreur.</p>
+</section>
+<section id="avant-propos" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> <span class="smallcaps">Avant-propos</span></h1>
+<section id="motivation-objectif" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="motivation-objectif"><span class="header-section-number">2.1</span> <span class="smallcaps">Motivation &amp; objectif</span></h2>
+<p>Dans le calcul d’un indice des prix à la consommation, le sous indice des prix du groupe 4.1 de la COICOP se rapportant aux loyers d’habitation est particulièrement difficile à traiter. En effet, le marché locatif est caractérisé par deux faits, premièrement une forte décentralisation, c’est-à-dire que la location peut se faire de particulier à particulier, de particulier à entreprise de gestion ou de particulier à agence immobilière. Du fait de cette forte délocalisation, le relevé des loyers se fait généralement par le biais d’une enquête auprès des locataires plutôt que des bailleurs.<br>
+La deuxième caractéristique du marché locatif est l’hétérogénéité des biens. Les instituts de statistiques procèdent généralement à une enquête par échantillonnage stratifié de manière à ce que les biens interrogés soient représentatifs du parc locatif courant. Cependant, des biens d’une même strate peuvent avoir des caractéristiques très différentes (<em>e.g.</em> si les strates sont définis par zone géographiques et âges des logements, deux biens peuvent appartenir à la même strate tout en ayant des superficies très différentes). Ces différences de caractéristiques peuvent, dans le cadre d’un renouvellement des logements suivis, entraîner une variation de l’indice des loyers non représentative d’une variation globale des loyers. Aussi, plusieurs instituts utilisent des modèles hédoniques pour éviter ce phénomène. On peut citer l’Office fédérale de la Statistique (Suisse,OFS) qui procède à un réajustement des loyers basé sur un modèle hédonique ou Statistiques Canada qui calcule l’indice des loyers avec un tel modèle.</p>
+<p>Les modèles utilisés par les instituts de statistiques requièrent souvent un jeu de données très grand pour pouvoir déterminer les coefficients de ces modèles (près de cent mille observations pour l’OFS, dix mille observation pour Statistiques Canada).<br>
+Le but de ce travail est de voir si les données récupérées par l’ISPF permettent de réaliser un modèle similaire propre à la Polynésie française. En particulier, on s’inspire beaucoup du travail réalisé par l’OFS et présenté dans <u>Fourcade, L. (2022), <em>Indice des loyers : rapport méthodologique</em>, Publication OFS</u>. On se permet de mentionner aussi <u><em>Keshishbanoosy &amp; Taylor (2019), New approach for estimating the rent component of the Consumer Price Index</em></u> qui présente le travail de Statistiques Canada.</p>
+</section>
+<section id="théorie-de-la-demande-hédonique" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="théorie-de-la-demande-hédonique"><span class="header-section-number">2.2</span> <span class="smallcaps">Théorie de la demande hédonique</span></h2>
+<p>L’hypothèse centrale des modèles hédoniques est que le prix du bien ou service considéré est déterminé par ses caractéristiques. Ce genre de modèle est courant dans le domaine de l’immobilier.<br>
+Les instituts de statistiques du Canada et de la Suisse ont tous deux choisis comme modèle hédonique des modèles de forme Log-Linéaire, c’est-à-dire que le logarithme du loyer égal à la somme d’une fonction affine en les caractéristiques du logement et d’un bruit. On suppose donc la forme suivante :</p>
+<p><span class="math display">
+\log(\mathrm{loyer}) = \beta_0 + \sum_{c\, \in \,  \{\mathrm{covariables}\}} \beta_c \; c \; \;+ \varepsilon
+</span><br>
+Ces instituts réalisent ensuite une régression linéaire de manière à déterminer les coefficients <span class="math inline">\beta</span>.</p>
+</section>
+<section id="enquête-loyers-et-charge-de-lispf" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="enquête-loyers-et-charge-de-lispf"><span class="header-section-number">2.3</span> <span class="smallcaps">Enquête Loyers et Charge de l’ISPF</span></h2>
+<p>L’ISPF relève les loyers dans le cadre de l’Enquête Loyers et Charge. Le questionnaire de cette enquête est disponible en ligne. Cette enquête est réalisée sur Tahiti et Moorea uniquement, l’échantillon est présentement de 660 logements avec interrogation semestrielle, les non-réponses sont gérées par substitution (le logement remplaçant étant choisi par l’enquêteur sur le terrain).<br>
+De cette enquête on peut obtenir 22 variables qui semblent être caractéristique d’un logement. On a rangé ces variables par types (spatiale, temporelle, caractéristiques du bail, de surface <em>etc.</em>). Les variables et leurs type sont disponibles en annexe [<span class="smallcaps"><strong>Variables</strong></span>].</p>
+<p>On fait remarquer que le format de l’enquête sans renouvellement et avec gestion de non-réponse par substitution peut rendre les données récoltées moins représentatives de la population générale. Aussi, le modèle développé ici peut être moins performant sur de nouvelles données dans le cas d’un renouvellement des logements interrogés.</p>
+</section>
+</section>
+<section id="méthodologie" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> <span class="smallcaps">Méthodologie</span></h1>
+<section id="traitement-des-données" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="traitement-des-données"><span class="header-section-number">3.1</span> <span class="smallcaps">Traitement des données</span></h2>
+<p>On as pris en entrée une table de données contenant les réponses au questionnaires de l’enquête loyers et charges. Celui-ci comportait des informations personnelles ainsi que des entrés incohérentes. Cette table contient 10906 observations pour 810 logements différents.</p>
+<p>On as supprimé toutes les informations personnelles (prénom, nom, numéro de téléphone, <em>etc.</em>) des locataires ainsi que les informations les plus précise sur la localisation contenue dans cette table. Pour la localisation, on ne conserve que la commune et le district des logements.<br>
+Dans la table, il y a trois information sur le loyers : le loyer au décembre précédent, le loyer présent hors charges, le loyer présent charges comprises. Sur de nombreuses observations, le loyers hors charges est inférieur au loyer charges comprises. Aussi, on as décidé, de manière à avoir le loyer toute charges comprises de prendre le maximum entre les trois loyers fournis.<br>
+Enfin, on a remplacés les réponses invraisemblable( surface nulle, plus de 100 pièces, <em>etc.</em>) par des <em>Not Available</em> et on as regroupé les modalités minoritaires ensemble.</p>
+<p>La majorité des données que l’on utilise dans notre travail sont des variables catégorielle (pouvant prendre un nombre fini de valeur). Par exemple, on code par un chiffre compris entre 1 et 7 le type de logement. Utiliser ce code dans une régression rendrait difficile, voire impossible, l’interprétation des coefficients du modèles aussi, pour intégrer dans notre régression des variables catégorielles, on utilise des <em>dummy variables</em>, ou variables muettes/fictives/indicatrices.<br>
+Le principe est le suivant : étant données une variable catégorielle <code>var</code> à <span class="math inline">n</span> modalités numéroté de <span class="math inline">1</span> à <span class="math inline">n</span>, on construit <span class="math inline">n-1</span> variables indicatrices<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> (nos <em>dummy variables)</em> <code>var_1</code>,<code>var_2</code>,<code>var_n-1</code> où <code>var_i</code> prend la valeur <span class="math inline">1</span> si <code>var</code> est égal à <span class="math inline">1</span>, <span class="math inline">0</span> sinon.<br>
+On calcule des <em>dummy variables</em> pour toutes nos variables catégorielles.</p>
+</section>
+<section id="détermination-du-modèle" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="détermination-du-modèle"><span class="header-section-number">3.2</span> <span class="smallcaps">Détermination du modèle</span></h2>
+<p>On rappel que l’on l’on cherche as trouver un modèle de la forme :</p>
+<p><span class="math display">
+\log(\mathrm{loyer}) = \beta_0 + \sum_{c\, \in \,  \{\mathrm{covariables}\}} \beta_c \; c \; \;+ \varepsilon
+</span><br>
+Où, les coefficients <span class="math inline">\beta</span> seront évalués par la méthode des moindres carrés ordinaire.</p>
+<p>Avec la forme de modèle choisie, on peut calculer plusieurs modèles en prenant, ou non, certaines covariables en compte. Mettre beaucoup de covariables dans un modèle permet d’améliorer les prédictions du modèle sur les données d’entrainements, au risque que les prédictions du modèle sur d’autres données soient moins bonne. Mettre trop peu de covariables dans un modèle risque de réduire la qualité des prédictions du modèle. Aussi il nous faut choisir ni trop, ni trop peu de covariables dans notre modèle.</p>
+<p>Pour choisir un modèle ni trop simple, ni trop compliqué, on procède ici comme suit : on calcule plusieurs modèles, pour chacun on calcule des statistiques qui nous permettent de les comparer, on choisit le meilleur modèle selon ces statistiques, on modifie le modèle retenue de manière à l’améliorer.</p>
+<p>Ne pouvant calculer <span class="math inline">22!</span> modèles, on sélectionne plusieurs modèle qui peuvent être interessant. Pour ce faire, on regroupe tout d’abord les variables en plusieurs type (temporelle, spatiale, surface logement,etc.) et on fait des paquets de variables dans ces groupe de types. On vient ensuite choisir un paquet de variable par groupe de type de variables. Les paquets de variables par groupe de type sont disponible en annexe [<span class="smallcaps"><strong>Paquets de variables</strong></span>]. On as donc 810 modèles possibles à calculer.<br>
+Pour chacun de ces modèles, ont calcule tout d’abord le <span class="math inline">R^2</span> et le <span class="math inline">R^2</span> ajusté. On calcule aussi les erreurs absolues moyennes et erreurs quadratiques ainsi que els p-valeurs de différents test qui vérifie si les résidus suivent une loi normales. Enfin, on calcule les AIC et BIC (<em>Akaike Information Criterion</em>, <em>Bayesian Information Criterion</em>) qui sont des coefficients qui permettent de comparer différents modèles. Ces deux coefficients diminue lorsque le nombre de covariables augmente ou lorsque le modèle colle mieux aux données. Ils permettent donc, en choissisant le modèle ayant les plus petits AIC et BIC, de prendre un modèle qui donne de bonne prédiction tout en évitant l’<em>overfit</em>.<br>
+On choisit de se limiter au modèle n’ayant pas comme covariable <code>LoyerAct_Annee</code>,<code>CDist</code>, ou <code>CNBPieces</code>. On ne prends pas la covariables <code>LoyerAct_Annee</code> Pour que l’on puisse utiliser le modèle sur des données plus récentes ou plus anciennes que celle d’entrainement, on ne prends pas la covariables <code>CDist</code> car il existe plusieurs district qui ne sont pas présent dans le données d’entrainements, on ne prends pas la covariables <code>CNBPieces</code> car celle-ci est trop fortement corrélé à d’autres covariables. On présente dans deux tableaux ci-dessous les 5 meilleurs modèles selon le critère BIC.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div data-pagedtable="false">
+<script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["ID"],"name":[1],"type":["chr"],"align":["left"]},{"label":["CCom"],"name":[2],"type":["lgl"],"align":["right"]},{"label":["CDist"],"name":[3],"type":["lgl"],"align":["right"]},{"label":["CConstruction"],"name":[4],"type":["lgl"],"align":["right"]},{"label":["CNBPieces"],"name":[5],"type":["lgl"],"align":["right"]},{"label":["NBChambre"],"name":[6],"type":["lgl"],"align":["right"]},{"label":["NBSDB"],"name":[7],"type":["lgl"],"align":["right"]},{"label":["COccupation"],"name":[8],"type":["lgl"],"align":["right"]},{"label":["CDestloyer"],"name":[9],"type":["lgl"],"align":["right"]},{"label":["LoyerAct_Annee"],"name":[10],"type":["lgl"],"align":["right"]},{"label":["IsBureau"],"name":[11],"type":["lgl"],"align":["right"]},{"label":["IsPiscine"],"name":[12],"type":["lgl"],"align":["right"]},{"label":["IsChargesloc"],"name":[13],"type":["lgl"],"align":["right"]},{"label":["IsTaxeseauxord"],"name":[14],"type":["lgl"],"align":["right"]},{"label":["IsChargeCopro"],"name":[15],"type":["lgl"],"align":["right"]},{"label":["IsEntretienJardin"],"name":[16],"type":["lgl"],"align":["right"]},{"label":["IsGardien"],"name":[17],"type":["lgl"],"align":["right"]},{"label":["IsMenage"],"name":[18],"type":["lgl"],"align":["right"]},{"label":["IsProvisionEau"],"name":[19],"type":["lgl"],"align":["right"]},{"label":["IsOrdureMenage"],"name":[20],"type":["lgl"],"align":["right"]},{"label":["IsAutrefrais"],"name":[21],"type":["lgl"],"align":["right"]},{"label":["SurfaceT"],"name":[22],"type":["lgl"],"align":["right"]},{"label":["SurfaceH"],"name":[23],"type":["lgl"],"align":["right"]}],"data":[{"1":"27","2":"TRUE","3":"FALSE","4":"TRUE","5":"FALSE","6":"TRUE","7":"FALSE","8":"TRUE","9":"TRUE","10":"FALSE","11":"TRUE","12":"TRUE","13":"FALSE","14":"TRUE","15":"TRUE","16":"TRUE","17":"TRUE","18":"TRUE","19":"TRUE","20":"TRUE","21":"TRUE","22":"FALSE","23":"TRUE"},{"1":"18","2":"TRUE","3":"FALSE","4":"TRUE","5":"FALSE","6":"TRUE","7":"FALSE","8":"TRUE","9":"FALSE","10":"FALSE","11":"TRUE","12":"TRUE","13":"FALSE","14":"TRUE","15":"TRUE","16":"TRUE","17":"TRUE","18":"TRUE","19":"TRUE","20":"TRUE","21":"TRUE","22":"FALSE","23":"TRUE"},{"1":"9","2":"TRUE","3":"FALSE","4":"TRUE","5":"FALSE","6":"TRUE","7":"FALSE","8":"FALSE","9":"FALSE","10":"FALSE","11":"TRUE","12":"TRUE","13":"FALSE","14":"TRUE","15":"TRUE","16":"TRUE","17":"TRUE","18":"TRUE","19":"TRUE","20":"TRUE","21":"TRUE","22":"FALSE","23":"TRUE"},{"1":"17","2":"TRUE","3":"FALSE","4":"TRUE","5":"FALSE","6":"TRUE","7":"FALSE","8":"TRUE","9":"FALSE","10":"FALSE","11":"TRUE","12":"TRUE","13":"TRUE","14":"TRUE","15":"FALSE","16":"FALSE","17":"FALSE","18":"FALSE","19":"FALSE","20":"FALSE","21":"FALSE","22":"FALSE","23":"TRUE"},{"1":"26","2":"TRUE","3":"FALSE","4":"TRUE","5":"FALSE","6":"TRUE","7":"FALSE","8":"TRUE","9":"TRUE","10":"FALSE","11":"TRUE","12":"TRUE","13":"TRUE","14":"TRUE","15":"FALSE","16":"FALSE","17":"FALSE","18":"FALSE","19":"FALSE","20":"FALSE","21":"FALSE","22":"FALSE","23":"TRUE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>tableau des covariables des cinqs meilleurs modèles</p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div data-pagedtable="false">
+<script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["ID"],"name":[1],"type":["chr"],"align":["left"]},{"label":["rsquared"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["rsquared_adj"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["pValue_overallF"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["AIC"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["BIC"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["MAE"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["RMSE"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["testStatistic_JB"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["pValue_JB"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["testStatistic_BP"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["pValue_BP"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["testStatistic_RESET"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["pValue_RESET"],"name":[14],"type":["dbl"],"align":["right"]}],"data":[{"1":"27","2":"0.7698057","3":"0.7688731","4":"0","5":"-4948.739","6":"-4613.074","7":"0.1453388","8":"0.1920426","9":"752.0756","10":"0","11":"1925.069","12":"0","13":"50.87164","14":"1.022541e-22"},{"1":"18","2":"0.7691189","3":"0.7682475","4":"0","5":"-4922.247","6":"-4608.473","7":"0.1457845","8":"0.1923289","9":"740.1692","10":"0","11":"1855.075","12":"0","13":"53.43221","14":"8.094414e-24"},{"1":"9","2":"0.7684564","3":"0.7676046","4":"0","5":"-4899.537","6":"-4593.033","7":"0.1461219","8":"0.1925751","9":"684.3348","10":"0","11":"1765.685","12":"0","13":"55.55040","14":"9.938129e-25"},{"1":"17","2":"0.7637731","3":"0.7630125","4":"0","5":"-4684.611","6":"-4414.620","7":"0.1471575","8":"0.1945427","9":"858.6408","10":"0","11":"1843.883","12":"0","13":"63.72849","14":"3.049563e-28"},{"1":"26","2":"0.7642279","3":"0.7634035","4":"0","5":"-4699.630","6":"-4407.748","7":"0.1471869","8":"0.1943554","9":"878.9527","10":"0","11":"1905.530","12":"0","13":"60.90674","14":"4.964283e-27"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>tableau des statistiques des cinqs meilleurs modèles</p>
+</div>
+</div>
+<p>Pour modifier le modèle retenue, ici le modèe 27, on va retirer des covariables de manières successive tant que cela diminue le BIC. On s’arrête dès que l’on ne peut plus retirer de covariables du modèle sans augmenter le BIC. Voici-ci dessous les iterations successives de ce procédé, le modèle à conservé étant la dernière itération de celui-ci, sur le modèle 27 du tableau précédent:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div data-pagedtable="false">
+<script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["iteration"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["CCom"],"name":[2],"type":["lgl"],"align":["right"]},{"label":["CDist"],"name":[3],"type":["lgl"],"align":["right"]},{"label":["CConstruction"],"name":[4],"type":["lgl"],"align":["right"]},{"label":["CNBPieces"],"name":[5],"type":["lgl"],"align":["right"]},{"label":["NBChambre"],"name":[6],"type":["lgl"],"align":["right"]},{"label":["NBSDB"],"name":[7],"type":["lgl"],"align":["right"]},{"label":["COccupation"],"name":[8],"type":["lgl"],"align":["right"]},{"label":["CDestloyer"],"name":[9],"type":["lgl"],"align":["right"]},{"label":["LoyerAct_Annee"],"name":[10],"type":["lgl"],"align":["right"]},{"label":["IsBureau"],"name":[11],"type":["lgl"],"align":["right"]},{"label":["IsPiscine"],"name":[12],"type":["lgl"],"align":["right"]},{"label":["IsChargesloc"],"name":[13],"type":["lgl"],"align":["right"]},{"label":["IsTaxeseauxord"],"name":[14],"type":["lgl"],"align":["right"]},{"label":["IsChargeCopro"],"name":[15],"type":["lgl"],"align":["right"]},{"label":["IsEntretienJardin"],"name":[16],"type":["lgl"],"align":["right"]},{"label":["IsGardien"],"name":[17],"type":["lgl"],"align":["right"]},{"label":["IsMenage"],"name":[18],"type":["lgl"],"align":["right"]},{"label":["IsProvisionEau"],"name":[19],"type":["lgl"],"align":["right"]},{"label":["IsOrdureMenage"],"name":[20],"type":["lgl"],"align":["right"]},{"label":["IsAutrefrais"],"name":[21],"type":["lgl"],"align":["right"]},{"label":["SurfaceT"],"name":[22],"type":["lgl"],"align":["right"]},{"label":["SurfaceH"],"name":[23],"type":["lgl"],"align":["right"]}],"data":[{"1":"0","2":"TRUE","3":"FALSE","4":"TRUE","5":"FALSE","6":"TRUE","7":"FALSE","8":"TRUE","9":"TRUE","10":"FALSE","11":"TRUE","12":"TRUE","13":"FALSE","14":"TRUE","15":"TRUE","16":"TRUE","17":"TRUE","18":"TRUE","19":"TRUE","20":"TRUE","21":"TRUE","22":"FALSE","23":"TRUE"},{"1":"1","2":"TRUE","3":"FALSE","4":"TRUE","5":"FALSE","6":"TRUE","7":"FALSE","8":"TRUE","9":"TRUE","10":"FALSE","11":"TRUE","12":"TRUE","13":"FALSE","14":"TRUE","15":"FALSE","16":"TRUE","17":"TRUE","18":"TRUE","19":"TRUE","20":"TRUE","21":"TRUE","22":"FALSE","23":"TRUE"},{"1":"2","2":"TRUE","3":"FALSE","4":"TRUE","5":"FALSE","6":"TRUE","7":"FALSE","8":"TRUE","9":"TRUE","10":"FALSE","11":"TRUE","12":"TRUE","13":"FALSE","14":"TRUE","15":"FALSE","16":"TRUE","17":"FALSE","18":"TRUE","19":"TRUE","20":"TRUE","21":"TRUE","22":"FALSE","23":"TRUE"},{"1":"3","2":"TRUE","3":"FALSE","4":"TRUE","5":"FALSE","6":"TRUE","7":"FALSE","8":"TRUE","9":"TRUE","10":"FALSE","11":"TRUE","12":"TRUE","13":"FALSE","14":"TRUE","15":"FALSE","16":"TRUE","17":"FALSE","18":"FALSE","19":"TRUE","20":"TRUE","21":"TRUE","22":"FALSE","23":"TRUE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>tableau des iterations successive de l’algorithme</p>
+</div>
+</div>
+</section>
+</section>
+<section id="modèle" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> <span class="smallcaps">Modèle</span></h1>
+<section id="forme-du-modèle" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="forme-du-modèle"><span class="header-section-number">4.1</span> <span class="smallcaps">Forme du modèle</span></h2>
+<p>Le modèle retenue dans la partie précédente est le suivant :</p>
+<p><span class="math display">
+\begin{align*}
+\log(\mathrm{loyer}) =&amp;\beta_0 + \beta_1 \; \mathrm{Commune} &amp; \\
+&amp;+ \beta_2 \; \mathrm{Nombre\ de\ chambe} \;+ \beta_3 \; \mathrm{Surface\ habitable}\\
+&amp;+ \beta_4 \; \mathrm{meublé} \;+ \beta_5 \; \mathrm{Propriétaire}\\
+&amp;+ \beta_6 \; \mathrm{Bureau} \;+ \beta_7 \; \mathrm{Piscine} \; + \beta_8 \; \mathrm{type\ de\ construction}\\
+&amp;+\beta_9 \; \mathrm{Taxes} \;+ \beta_{10} \; \mathrm{Entetien\ jardin} \;+ \beta_{11} \; \mathrm{Charges\ eau}\;+ \beta_{12} \; \mathrm{charges\ ordures} \;+ \beta_{13} \; \mathrm{Autres\ charges}\\
+&amp;+ \varepsilon
+\end{align*}
+</span></p>
+<p>Cependant, comme expliqué précédemment en partie [<span class="smallcaps"><strong>Traitement des données</strong></span>], la plupart de ces variables sont des variables catégorielles qu’il convient de ne pas intégrer dans la régression directement. On remplace donc les variables catégorielles par plusieurs variables indicatrice de chaque modalités. Par exemple à la place de <span class="math inline">\beta_1 \mathrm{Commune}</span> on as en réalité <span class="math inline">\beta_1^1 \mathrm{Commune\ 1} + \beta_1^2 \mathrm{Commune\ 2}+ \dots</span>, où <span class="math inline">\mathrm{Commune\ 1}</span> vaut 1 si le logement se situe dans la commune 1, 0 sinon.<br>
+Si une variable catégorielle a <span class="math inline">n</span> modalités, on créera <span class="math inline">n-1</span> variables indicatrices. La modalité pour laquelle on ne crée pas de variables indicatrices est la modalité la plus présente dans notre jeu de données et sera notre modalité de référence.</p>
+<p>les variables du modèles et les estimations des coefficients associés sont donnés ci-dessous. On y retrouve aussi l’estimation de son écart type (<em>Std. Error</em>) et la p-valeur du t-test de Student qui est la probabilité d’obtenir l’estimation du coefficient indiqués si le coefficient réel est en fait nul.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = formula, data = dt)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.76330 -0.11948 -0.00456  0.11359  0.70241 
+
+Coefficients:
+                    Estimate Std. Error  t value Pr(&gt;|t|)    
+(Intercept)        1.159e+01  7.696e-03 1506.544  &lt; 2e-16 ***
+CCom_12            9.706e-03  9.840e-03    0.986 0.323971    
+CCom_15           -3.371e-02  6.537e-03   -5.157 2.55e-07 ***
+CCom_22           -2.498e-01  1.581e-02  -15.798  &lt; 2e-16 ***
+CCom_25           -1.428e-01  9.046e-03  -15.781  &lt; 2e-16 ***
+CCom_29           -1.262e-01  8.543e-03  -14.779  &lt; 2e-16 ***
+CCom_33           -1.968e-01  9.997e-03  -19.689  &lt; 2e-16 ***
+CCom_34           -1.675e-01  1.008e-02  -16.622  &lt; 2e-16 ***
+CCom_35            7.206e-02  6.191e-03   11.640  &lt; 2e-16 ***
+CCom_36           -1.065e-02  8.256e-03   -1.290 0.196991    
+CCom_47           -3.964e-01  1.048e-02  -37.828  &lt; 2e-16 ***
+CCom_48           -2.138e-01  1.172e-02  -18.246  &lt; 2e-16 ***
+CCom_52           -4.291e-01  1.435e-02  -29.891  &lt; 2e-16 ***
+CConstruction_1   -1.254e-01  1.136e-02  -11.045  &lt; 2e-16 ***
+CConstruction_2   -6.109e-03  3.828e-02   -0.160 0.873201    
+CConstruction_4   -2.240e-01  2.152e-02  -10.409  &lt; 2e-16 ***
+CConstruction_5   -2.117e-01  6.646e-03  -31.850  &lt; 2e-16 ***
+NBChambre_0       -4.201e-01  7.043e-03  -59.647  &lt; 2e-16 ***
+NBChambre_1       -1.875e-01  5.765e-03  -32.517  &lt; 2e-16 ***
+NBChambre_3        2.009e-01  5.958e-03   33.722  &lt; 2e-16 ***
+NBChambre_4        2.103e-01  1.164e-02   18.070  &lt; 2e-16 ***
+NBChambre_5plus    2.822e-01  1.817e-02   15.533  &lt; 2e-16 ***
+COccupation_2     -2.324e-02  4.613e-03   -5.039 4.75e-07 ***
+CDestloyer_2       5.132e-02  8.962e-03    5.726 1.05e-08 ***
+CDestloyer_3       1.609e-02  5.551e-03    2.898 0.003767 ** 
+CDestloyer_4       1.319e-01  5.428e-02    2.429 0.015139 *  
+IsBureau           5.948e-02  1.442e-02    4.126 3.73e-05 ***
+IsPiscine          3.079e-01  5.643e-03   54.563  &lt; 2e-16 ***
+IsTaxeseauxord    -3.806e-02  4.981e-03   -7.641 2.33e-14 ***
+IsEntretienJardin  8.162e-02  4.948e-03   16.496  &lt; 2e-16 ***
+IsProvisionEau    -2.273e-02  5.872e-03   -3.870 0.000109 ***
+IsOrdureMenage     9.742e-02  6.556e-03   14.859  &lt; 2e-16 ***
+IsAutrefrais       2.626e-02  7.726e-03    3.398 0.000680 ***
+SurfaceH           1.777e-03  6.892e-05   25.779  &lt; 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.194 on 10872 degrees of freedom
+Multiple R-squared:  0.7658,    Adjusted R-squared:  0.7651 
+F-statistic:  1077 on 33 and 10872 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</section>
+<section id="détails-des-variables" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="détails-des-variables"><span class="header-section-number">4.2</span> <span class="smallcaps">Détails des variables</span></h2>
+<p>Dans toute cette partie, les codes ce réfèrent à ceux entrés dans le questionnaire de l’enquête loyer et charges.</p>
+<section id="commune" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="commune"><span class="header-section-number">4.2.1</span> <span class="smallcaps">Commune</span></h3>
+<p>La variable <code>CCom</code> code la commune des logements, on retrouve sur le site de l’INSEE le code de chaque commune de la Polynésie française. On trouve ci-dessous la répartition de nos observation en fonction des communes. Ce nous permet de voir que certaines communes comportent peu de relevés. En particulier, les commune 22 (Hitiaa O Te Ra) et 52 (Teva I Uta) ont peut être trop peu d’’élément.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="main_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Répartition des observations par commune</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>La commune la plus représenté parmis nos données est la commune de Punaauia de code 38. Ainsi, la commune de Punaauia est notre commune de référence, cela veut dire que l’analyse des coefficients des variables indicatrices se fait par rapport à celle de Punaauia. Par exemple, la commune de Papeete (code 35), as un coefficients associé de valeur 7.206e-2, toute chose égale par ailleurs, le loyer d’un logement à Papeete sera donc 7.5% plus élevé que le loyer d’un logement à Punaauia<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.<br>
+De même, un logement à Hitiaa O Te Ra (code 22), aura un loyer, toute choses égale par ailleurs, 22% pourcent moins élevés que celui d’un logement à Punaauia<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
+</section>
+<section id="construction" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="construction"><span class="header-section-number">4.2.2</span> <span class="smallcaps">Construction</span></h3>
+<p>On trouve ci-dessous la distribution des types de constructions. On peut voir que les maisons individuelles modernes (code 3) sont majoritaire, il s’agit là de notre type de construction de référence.<br>
+Au vue de cette histogramme, il apparaît qu’il faudrait regrouper les “Immeuble style HLM” (code 4) et les “Immeuble collectif autre style HLM” en une seule catégorie “Immeuble”. Ce regroupement est en plus justifié par la faible différence de coefficient de <code>CConstruction_4</code> et <code>CConstruction_5</code>.<br>
+Il semble aussi judicieux de regrouper les logement de type 1 et 2 (respectivement maisons individuelles traditionelle et fare MTR) en un groupe “autres”.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="main_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Répartition des observations par type de construction</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="nombre-de-chambre" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="nombre-de-chambre"><span class="header-section-number">4.2.3</span> <span class="smallcaps">Nombre de chambre</span></h3>
+<p>On trouve ci-dessous la distribution des nombre de chambres. Le nombre de chambre de référence est de 2.<br>
+Il semble y avoir assez d’observation pour chaque groupe. Il ne serait en revanche pas dérangeant de regrouper les nombres de chambre en créant la catégorie “4 et plus”. Ce choix peut être critiqué du fait que les logements à 5 chambres sont 7% plus chère que ceux à 4 chambres, toutes choses égales par ailleurs, dans ce modèle.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="main_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Répartition des observations par nombre de chambre</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="destinataire-du-loyer" class="level3" data-number="4.2.4">
+<h3 data-number="4.2.4" class="anchored" data-anchor-id="destinataire-du-loyer"><span class="header-section-number">4.2.4</span> <span class="smallcaps">Destinataire du loyer</span></h3>
+<p>On trouve ci-dessous la distribution des relevés en fonction du destinataire du loyer et par statut d’occupation du logement. La majorité des locataires des logements interrogés payent leurs loyer et loge des meublés.</p>
+<p>On justifie le non regroupements des types de destinataire du loyer autre que “particulier” (code1) en un seul groupe “autre destinataire”,malgrès le très faible nombre d’observation, par la différence considérable des coefficients des variables indicatrices du type de destinataire.</p>
+<p>En ce qui concerne le statut d’occupation, il semble il y avoir assez d’observation des catégories “meublé” et “non meublé”, en revanche la catégorie “accédant à la propriété” contient très peu d’entrée. Cette dernière catégorie as été omise du fait qu’il ne s’agisse pas d’une location.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="main_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Répartition des observations par type de destinataire du loyer</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="main_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Répartition des observations par statut d’occupation</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="bureau-piscine" class="level3" data-number="4.2.5">
+<h3 data-number="4.2.5" class="anchored" data-anchor-id="bureau-piscine"><span class="header-section-number">4.2.5</span> <span class="smallcaps">Bureau &amp; Piscine</span></h3>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="main_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Répartition des observations en fonction de la présence de piscine</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>gfr</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="main_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Répartition des observations en fonction de la présence de bureau</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="analyse-du-modèle" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="analyse-du-modèle"><span class="header-section-number">4.3</span> <span class="smallcaps">Analyse du modèle</span></h2>
+<section id="performance" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="performance"><span class="header-section-number">4.3.1</span> Performance</h3>
+<p>Pour mesurer la performance du modèle on garde plusieurs métrique : le <span class="math inline">R^2</span> ajusté, l’erreur absolue moyenne (MAE) de la régression, l’erreur quadratique moyenne (RMSE) de la régression, l’erreur absolue moyenne exprimé en franc pacifique et l’erreur quadratique moyenne exprimé en franc pacifique.<br>
+On peut mesurer la performance du modèle sur les données d’entrainements (<em>in-sample</em>) ou la mesurer sur des données différentes (<em>out-of-sample</em>). On trouve ci-dessous un tableau présentant les performance du modèle <em>in-sample</em> ( 2021-2024) et out-of-sample (2015-2018) ainsi que le code pour calculer les résultat <em>out-of-sample</em>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|eval: false</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>DATA <span class="ot">&lt;-</span> data_loyer[(LoyerAct_Annee<span class="sc">&lt;=</span><span class="dv">2011</span>)<span class="sc">&amp;</span>(LoyerAct_Annee<span class="sc">&gt;=</span><span class="dv">2005</span>)]</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"src/3.data_preparation.R"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>DATA_Work <span class="ot">&lt;-</span> <span class="fu">getDATAPresent</span>(DATA,iterative,<span class="fu">nrow</span>(iterative)<span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"src/7.model_evaluation.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<table class="table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>type d’évaluation</th>
+<th><span class="math inline">R^2</span> adj.</th>
+<th>MAE</th>
+<th>RMSE</th>
+<th>MAE en xpf</th>
+<th>RMSE en xpf</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>In-sample</td>
+<td>0.7651</td>
+<td>0.1466</td>
+<td>0.1937</td>
+<td>20556 xpf</td>
+<td>31440 xpf</td>
+</tr>
+<tr class="even">
+<td>Out-of-sample (2015-2018)</td>
+<td>0.6120</td>
+<td>0.2263</td>
+<td>0.2996</td>
+<td>23991 xpf</td>
+<td>31808 xpf</td>
+</tr>
+<tr class="odd">
+<td>Out-of-sample (2006-2011)</td>
+<td>0.3788</td>
+<td>0.2749</td>
+<td>0.3887</td>
+<td>28920 xpf</td>
+<td>40759 xpf</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="analyse-des-résidus" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="analyse-des-résidus"><span class="header-section-number">4.3.2</span> <span class="smallcaps">Analyse des résidus</span></h3>
+<p>Les résidus ne suivent pas, selon le test de Jarque-Bera, une loi normale. Ils ont cependant une espérance nulle et le tracé, ci-dessous, de la densité empirique (en vert) des résidus ne semblent pas très éloigné de la densité d’une loi normale (en rouge). Cette quasi normalité des résidus se retrouve sur le diagramme quantile-quantile normale.</p>
+<p>Ensuite, selon le test de Breusch-Pagan, les résidus sont ne sont pas homoscédastique (<em>i.e.</em> les variances des résidus ne sont pas les même). Plus les résidus sont hétéroscédastique plus ils seront dispersé sur le nuage de point des résidus en fonction de l’estimation du loyer. Ce nuages de point ce trouve ci-dessous et permets de voir que la dispersion n’est pas très grande aussi, hétéroscédasticité ne doit pas être très grande.</p>
+<p>Enfin, toujours sur ce nuage de point, on voit qu’il n’y as pas de corrélation entre les résidus et l’estimation des loyers.</p>
+<p>Les propriété de non-normalité et d’hétéroscédasticité ne permettent pas de garantir les résultats usuelle des régression linéaire. On ne peut pas, en particulier, affirmer que les estimations des loyers sont les meilleurs estimations non-biaisé. De plus, les t-test des coefficients sont invalidés.<br>
+Magré cela, les analyses précédentes ne sont pas à jeter du fait de la presque normalité des résidus et de la faible d’hétéroscédasticité de ceux-ci.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="main_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="main_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="main_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="conclusion-et-ouverture" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> <span class="smallcaps">Conclusion et ouverture</span></h1>
+<section id="limites" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="limites"><span class="header-section-number">5.1</span> <span class="smallcaps">Limites</span></h2>
+<p>Il existe plusieurs limite à ce travail, on tente ici d’énoncer certaine de ces limites.</p>
+<p>Tout d’abord, ce modèle utilise des variables qui ne sont pas récolté durant d’autres enquête que l’enquête loyers et charge. En particulier, ce modèle ne permet pas une estimation des loyers à partir du RP. Ainsi, ce modèle ne permet que d’estimer les loyers des logements ayant déjà effectivement répondu à l’enquête loyers et charge.<br>
+Ensuite<br>
+Ensuite, VARIABLES BOFS DES FOIS</p>
+<p>???</p>
+</section>
+<section id="conclusion" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">5.2</span> <span class="smallcaps">Conclusion</span></h2>
+<p>A partir des données de l’enquête loyers et charge de l’ISPF, on arrive à faire un modèle hédonique des loyers avec une performancequi semble convenable sur les données d’entraînement (loyers relevés en 2021-2024) avec un <span class="math inline">R^2</span> ajusté de 0.7651 qui tombe à 0.6120 pour les loyers relevés entre 2015 et 2024, pour une erreur moyenne d’estimation des loyers proche de 20 000xpf. Cette baisse de <span class="math inline">R^2</span> ajusté peut indiquer un léger <em>overfit.</em></p>
+<p>De plus, ce modèle as des performances qui chute lorsqu’il est évalué sur les loyers relevé entre 2005 et 2011.<br>
+Cette chute de performance est à relativiser car le coût de la vie entre 2005 et 2024 est bien différents. On offre l’explication suivante à cette chute. Malgrès un grand nombre d’observation dans nos données d’entrainement (10906) il y a très peu de logements différents (810 logements différents). Cela veut dire que les loyers et caractéristiques d’un même logements ont été utilisé plusieurs fois dans la régression. Cela donne un poids plus grand aux logements ayant répondu plusieurs fois à l’enquête loyers et charge entre 2021 et 2024 et peut être la source d’<em>overfit.</em> Cette <em>overfit</em> n’aurait pas été grave pour l’évaluation du modèle sur les loyers entre 2015 et 2024 <span class="smallcaps"><strong>!non je viens de checker, sur 1024 logement entre 2015 et 2018, seul 124 sont aussi dans les logements de 2021-2024</strong></span></p>
+<p>Malgrès ces bonne performance, le modèle souffre d’un problème majeure : malgrès un grand nombre d’observation dans nos données d’entrainement (10906) il y a très peu de logements différents (810 logements différents). Cela veut dire que les loyers et caractéristiques d’un même logements ont été utilisé plusieurs fois dans la régression. Cela donne un poids plus grand aux logements ayant répondu plusieurs fois à l’enquête loyers et charge entre 2021 et 2024</p>
+<p><strong>Après pas assez de logement</strong></p>
+<p>ASSEZ D’ENTREE MAIS BON CA REVIENT A DOUBLER/ multiplieer certain logement</p>
+</section>
+<section id="ouverture" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="ouverture"><span class="header-section-number">5.3</span> <span class="smallcaps">ouverture</span></h2>
+<p>Enfin, dans ce travail on as utilisé pour réaliser la régression toutes les observation de loyer depuis 2021, un même logement peut donc avoir plusieurs entrée qui lui sont associées dans la base de donnés. Ce choix permet d’augmenter le nombre d’observation sur lequel le modèle s’entraine mais donne une importance bien plus grande au logement suivies depuis longtemps et risque d’augmenter artificiellement le <span class="math inline">R^2</span>.<br>
+On as donc décider de réaliser une seconde régression pour le même modèle, cette fois ci en pondérant les observations de manière à réduire le poids des observations associées à un logements dont le loyer as été observé plusieurs fois<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. Les estimations des coefficients,présentés ci-dessous, sont proches des estimations de la régression linéaire non-pondéré et le <span class="math inline">R^2</span> ajusté et lui même proche de celui de la régression linéaire non-pondéré. On conclu donc que le fait de ne pas pondéré les observation n’est pas dérangeant.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"src/9.weighted_model_calculation.R"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"src/7.model_evaluation.R"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>selected_model_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = formula, data = dt, weights = dt$poids)
+
+Weighted Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.77068 -0.02558  0.00089  0.02600  0.52001 
+
+Coefficients:
+                    Estimate Std. Error  t value Pr(&gt;|t|)    
+(Intercept)        1.129e+01  5.793e-03 1948.432  &lt; 2e-16 ***
+CCom_12            8.272e-02  6.028e-03   13.721  &lt; 2e-16 ***
+CCom_15           -3.549e-02  5.045e-03   -7.035 2.01e-12 ***
+CCom_22           -3.824e-01  8.473e-03  -45.126  &lt; 2e-16 ***
+CCom_25           -1.742e-02  6.001e-03   -2.903   0.0037 ** 
+CCom_29           -5.722e-02  5.678e-03  -10.077  &lt; 2e-16 ***
+CCom_33           -1.751e-01  6.190e-03  -28.288  &lt; 2e-16 ***
+CCom_34           -1.538e-01  7.730e-03  -19.892  &lt; 2e-16 ***
+CCom_36            9.455e-02  5.025e-03   18.816  &lt; 2e-16 ***
+CCom_38           -3.017e-02  4.265e-03   -7.074 1.53e-12 ***
+CCom_47           -3.435e-01  7.835e-03  -43.838  &lt; 2e-16 ***
+CCom_48           -3.746e-01  1.005e-02  -37.292  &lt; 2e-16 ***
+CCom_52           -4.329e-01  1.062e-02  -40.754  &lt; 2e-16 ***
+CCom_56           -8.971e-02  5.364e-02   -1.673   0.0944 .  
+CConstruction_1   -1.283e-01  6.125e-03  -20.941  &lt; 2e-16 ***
+CConstruction_2   -5.341e-02  1.105e-02   -4.835 1.34e-06 ***
+CConstruction_4    1.608e-01  3.501e-02    4.594 4.36e-06 ***
+CConstruction_5   -2.571e-02  4.062e-03   -6.330 2.47e-10 ***
+CConstruction_6   -8.943e-03  3.240e-02   -0.276   0.7825    
+NBChambre_0       -2.817e-01  5.054e-03  -55.742  &lt; 2e-16 ***
+NBChambre_1       -1.705e-01  3.890e-03  -43.845  &lt; 2e-16 ***
+NBChambre_3        1.196e-01  3.662e-03   32.666  &lt; 2e-16 ***
+NBChambre_4        7.101e-02  8.135e-03    8.729  &lt; 2e-16 ***
+NBChambre_5plus    2.329e-01  2.405e-02    9.683  &lt; 2e-16 ***
+COccupation_2     -2.596e-01  2.943e-03  -88.219  &lt; 2e-16 ***
+COccupation_3     -3.169e-01  3.105e-02  -10.205  &lt; 2e-16 ***
+COccupation_4     -1.184e+00  6.250e-02  -18.942  &lt; 2e-16 ***
+CDestloyer_2       5.225e-02  5.930e-03    8.811  &lt; 2e-16 ***
+CDestloyer_3       8.601e-02  3.836e-03   22.421  &lt; 2e-16 ***
+CDestloyer_4      -1.358e-01  1.872e-02   -7.253 4.13e-13 ***
+IsBureau           8.320e-02  5.818e-03   14.301  &lt; 2e-16 ***
+IsPiscine          3.101e-01  4.112e-03   75.414  &lt; 2e-16 ***
+IsTaxeseauxord     2.273e-02  2.990e-03    7.603 2.94e-14 ***
+IsEntretienJardin -3.326e-02  2.844e-03  -11.696  &lt; 2e-16 ***
+IsProvisionEau     3.590e-02  6.013e-03    5.971 2.37e-09 ***
+IsOrdureMenage     4.372e-02  5.915e-03    7.393 1.46e-13 ***
+IsAutrefrais       4.867e-02  5.693e-03    8.549  &lt; 2e-16 ***
+SurfaceH           4.134e-03  5.249e-05   78.759  &lt; 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.05316 on 56305 degrees of freedom
+Multiple R-squared:  0.5631,    Adjusted R-squared:  0.5628 
+F-statistic:  1961 on 37 and 56305 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="annexe" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> <span class="smallcaps">Annexe</span></h1>
+<section id="variables" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="variables"><span class="header-section-number">6.1</span> <span class="smallcaps">Variables</span></h2>
+<table class="table">
+<caption><em>groupe de type de variable</em></caption>
+<thead>
+<tr class="header">
+<th>Groupe</th>
+<th>Nombre de variable dans le groupe</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Temporel</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Spatiale</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>Caractéristique de surface</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>Caractéristique du bail</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>Caractéristique du logement</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>Charges</td>
+<td>9</td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<caption><em>table des variables étudiés</em></caption>
+<colgroup>
+<col style="width: 26%">
+<col style="width: 47%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Nom de la variable</th>
+<th>Signification</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>LoyerAct_Anne</code></td>
+<td>Année où le loyer relevé as été payé</td>
+<td>Temporelle</td>
+</tr>
+<tr class="even">
+<td><code>CCom</code></td>
+<td>Commune</td>
+<td>Spatiale</td>
+</tr>
+<tr class="odd">
+<td><code>CDist</code></td>
+<td>District</td>
+<td>Spatiale</td>
+</tr>
+<tr class="even">
+<td><code>CConstruction</code></td>
+<td>Type de construction</td>
+<td>Caractéristique du logement</td>
+</tr>
+<tr class="odd">
+<td><code>CNBPieces</code></td>
+<td>Nombre total de pièces</td>
+<td>Caractéristique de surface</td>
+</tr>
+<tr class="even">
+<td><code>NBChambre</code></td>
+<td>Nombre de chambres</td>
+<td>Caractéristique de surface</td>
+</tr>
+<tr class="odd">
+<td><code>NBSDB</code></td>
+<td>Nombre de salle de bain et wc</td>
+<td>Caractéristique de surface</td>
+</tr>
+<tr class="even">
+<td><code>SurfaceT</code></td>
+<td>Surface du terrain</td>
+<td>Caractéristique de surface</td>
+</tr>
+<tr class="odd">
+<td><code>SurfaceH</code></td>
+<td>Surface habitable</td>
+<td>Caractéristique de surface</td>
+</tr>
+<tr class="even">
+<td><code>COccupation</code></td>
+<td>Statut d’occupation</td>
+<td>Caractéristique du bail</td>
+</tr>
+<tr class="odd">
+<td><code>CDestloyer</code></td>
+<td>Destinatire du loyer</td>
+<td>Caractéristique du bail</td>
+</tr>
+<tr class="even">
+<td><code>IsBureau</code></td>
+<td>Présence d’une pièce as usage professionnel</td>
+<td>Caractéristique du logement</td>
+</tr>
+<tr class="odd">
+<td><code>IsPiscine</code></td>
+<td>Présence d’une piscine</td>
+<td>Caractéristique du logement</td>
+</tr>
+<tr class="even">
+<td><code>IsChargesloc</code></td>
+<td>Loyer comprenant des charges</td>
+<td>Charges</td>
+</tr>
+<tr class="odd">
+<td><code>IsTaxeseauxord</code></td>
+<td>Loyers comprennant des taxes communales</td>
+<td>Charges</td>
+</tr>
+<tr class="even">
+<td><code>IsChargeCopro</code></td>
+<td>Loyers comprennant des charges de copropriétés</td>
+<td>Charges</td>
+</tr>
+<tr class="odd">
+<td><code>IsEntretienJardin</code></td>
+<td>Loyers comprennant des charges d’entretien du jardin</td>
+<td>Charges</td>
+</tr>
+<tr class="even">
+<td><code>IsGardien</code></td>
+<td>Loyers comprennant des charges de gardiennage</td>
+<td>Charges</td>
+</tr>
+<tr class="odd">
+<td><code>IsMenage</code></td>
+<td>Loyers comprennant des charges de ménage</td>
+<td>Charges</td>
+</tr>
+<tr class="even">
+<td><code>IsProvisionEau</code></td>
+<td>Loyers comprennant des provisions pour l’eau</td>
+<td>Charges</td>
+</tr>
+<tr class="odd">
+<td><code>IsOrdureMenage</code></td>
+<td>Loyers comprennant des provisions pour les ordures ménagères</td>
+<td>Charges</td>
+</tr>
+<tr class="even">
+<td><code>IsAutreFrais</code></td>
+<td>Loyers comprennant d’autres charges</td>
+<td>Charges</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="paquets-de-variables" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="paquets-de-variables"><span class="header-section-number">6.2</span> <span class="smallcaps">Paquets de variables</span></h2>
+<table class="table">
+<caption><em>Paquet du groupe de variables temporelles</em></caption>
+<thead>
+<tr class="header">
+<th>Paquet</th>
+<th><code>LoyerAct_Annee</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Paquet 1</td>
+<td>X</td>
+</tr>
+<tr class="even">
+<td>Paquet 2</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<caption><em>Paquet du groupe de variables Spatiales</em></caption>
+<thead>
+<tr class="header">
+<th>Paquet</th>
+<th><code>CCom</code></th>
+<th><code>CDist</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Paquet 1</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Paquet 2</td>
+<td></td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>Paquet 3</td>
+<td>X</td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<caption><em>Paquet du groupe de variables de caractéristique de surface</em></caption>
+<colgroup>
+<col style="width: 14%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 13%">
+<col style="width: 19%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Paquets</th>
+<th><code>SurfaceH</code></th>
+<th><code>SurfaceT</code></th>
+<th><code>NBSDB</code></th>
+<th><code>NBChambre</code></th>
+<th><code>CNBPiece</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Paquet 1</td>
+<td>X</td>
+<td></td>
+<td></td>
+<td>X</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Paquet 2</td>
+<td></td>
+<td>X</td>
+<td></td>
+<td>X</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Paquet 3</td>
+<td>X</td>
+<td>X</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Paquet 4</td>
+<td></td>
+<td></td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr class="odd">
+<td>Paquet 5</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<caption><em>Paquet du groupe de variables de caractéristique du bail</em></caption>
+<thead>
+<tr class="header">
+<th>Paquets</th>
+<th><code>COccupation</code></th>
+<th><code>CDestloyer</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Paquet 1</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Paquet 2</td>
+<td>X</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Paquet 3</td>
+<td>X</td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<caption><em>Paquet du groupe de variables de caractéristique du logement</em></caption>
+<thead>
+<tr class="header">
+<th>Paquets</th>
+<th><code>CConstruction</code></th>
+<th><code>IsBureau</code></th>
+<th><code>IsPiscine</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Paquet 1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Paquet 2</td>
+<td>X</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Paquet 3</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<caption><em>Paquet du groupe de variables de caractéristique des charges</em></caption>
+<colgroup>
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Paquets</th>
+<th><code>IsTaxeseauxord</code></th>
+<th><code>IsChargesloc</code></th>
+<th><code>IsChargeCopro</code></th>
+<th><code>IsEntretienJardin</code></th>
+<th><code>IsGardien</code></th>
+<th><code>IsMenage</code></th>
+<th><code>IsProvisionEau</code></th>
+<th><code>IsOrdureMenage</code></th>
+<th><code>IsAutrefrais</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Paquet 1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Paquet 2</td>
+<td>X</td>
+<td>X</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Paquet 3</td>
+<td>X</td>
+<td></td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="modèle-1" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="modèle-1"><span class="header-section-number">6.3</span> <span class="smallcaps">Modèle</span></h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = formula, data = dt, weights = dt$poids)
+
+Weighted Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.77068 -0.02558  0.00089  0.02600  0.52001 
+
+Coefficients:
+                    Estimate Std. Error  t value Pr(&gt;|t|)    
+(Intercept)        1.129e+01  5.793e-03 1948.432  &lt; 2e-16 ***
+CCom_12            8.272e-02  6.028e-03   13.721  &lt; 2e-16 ***
+CCom_15           -3.549e-02  5.045e-03   -7.035 2.01e-12 ***
+CCom_22           -3.824e-01  8.473e-03  -45.126  &lt; 2e-16 ***
+CCom_25           -1.742e-02  6.001e-03   -2.903   0.0037 ** 
+CCom_29           -5.722e-02  5.678e-03  -10.077  &lt; 2e-16 ***
+CCom_33           -1.751e-01  6.190e-03  -28.288  &lt; 2e-16 ***
+CCom_34           -1.538e-01  7.730e-03  -19.892  &lt; 2e-16 ***
+CCom_36            9.455e-02  5.025e-03   18.816  &lt; 2e-16 ***
+CCom_38           -3.017e-02  4.265e-03   -7.074 1.53e-12 ***
+CCom_47           -3.435e-01  7.835e-03  -43.838  &lt; 2e-16 ***
+CCom_48           -3.746e-01  1.005e-02  -37.292  &lt; 2e-16 ***
+CCom_52           -4.329e-01  1.062e-02  -40.754  &lt; 2e-16 ***
+CCom_56           -8.971e-02  5.364e-02   -1.673   0.0944 .  
+CConstruction_1   -1.283e-01  6.125e-03  -20.941  &lt; 2e-16 ***
+CConstruction_2   -5.341e-02  1.105e-02   -4.835 1.34e-06 ***
+CConstruction_4    1.608e-01  3.501e-02    4.594 4.36e-06 ***
+CConstruction_5   -2.571e-02  4.062e-03   -6.330 2.47e-10 ***
+CConstruction_6   -8.943e-03  3.240e-02   -0.276   0.7825    
+NBChambre_0       -2.817e-01  5.054e-03  -55.742  &lt; 2e-16 ***
+NBChambre_1       -1.705e-01  3.890e-03  -43.845  &lt; 2e-16 ***
+NBChambre_3        1.196e-01  3.662e-03   32.666  &lt; 2e-16 ***
+NBChambre_4        7.101e-02  8.135e-03    8.729  &lt; 2e-16 ***
+NBChambre_5plus    2.329e-01  2.405e-02    9.683  &lt; 2e-16 ***
+COccupation_2     -2.596e-01  2.943e-03  -88.219  &lt; 2e-16 ***
+COccupation_3     -3.169e-01  3.105e-02  -10.205  &lt; 2e-16 ***
+COccupation_4     -1.184e+00  6.250e-02  -18.942  &lt; 2e-16 ***
+CDestloyer_2       5.225e-02  5.930e-03    8.811  &lt; 2e-16 ***
+CDestloyer_3       8.601e-02  3.836e-03   22.421  &lt; 2e-16 ***
+CDestloyer_4      -1.358e-01  1.872e-02   -7.253 4.13e-13 ***
+IsBureau           8.320e-02  5.818e-03   14.301  &lt; 2e-16 ***
+IsPiscine          3.101e-01  4.112e-03   75.414  &lt; 2e-16 ***
+IsTaxeseauxord     2.273e-02  2.990e-03    7.603 2.94e-14 ***
+IsEntretienJardin -3.326e-02  2.844e-03  -11.696  &lt; 2e-16 ***
+IsProvisionEau     3.590e-02  6.013e-03    5.971 2.37e-09 ***
+IsOrdureMenage     4.372e-02  5.915e-03    7.393 1.46e-13 ***
+IsAutrefrais       4.867e-02  5.693e-03    8.549  &lt; 2e-16 ***
+SurfaceH           4.134e-03  5.249e-05   78.759  &lt; 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.05316 on 56305 degrees of freedom
+Multiple R-squared:  0.5631,    Adjusted R-squared:  0.5628 
+F-statistic:  1961 on 37 and 56305 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>On ne mets pas <span class="math inline">n</span> indicatrice car sinon, la n-ième indicatrice serait linéairement dépendante des autres. En pratique, la modalité sans indicatrice est la modalité la plus présentes dans les données.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Le modèle étant Log-linéaire on passe la valeurs 7.206e-2 à l’exponentielle : <span class="math inline">\exp(7.206e-2)=1.075</span>. Le loyer d’un logement à Papeete sera égal au loyer d’un logement à Punaauia multipliée par 1.075.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Le modèle étant Log-linéaire on passe la valeurs -2.498e-1 à l’exponentielle : <span class="math inline">\exp(-2.498e-1)=0.78</span>. Le loyer d’un logement à Hitiaa O Te Ra sera égal au loyer d’un logement à Punaauia multipliée par 0.78.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>L’estimation des coefficients, <span class="math inline">\beta</span> se fait selon le programme de minimisation suivant :</p>
+<p><span class="math display">\min_{\beta_0,\dots,\beta_p}\sum_{i \in \mathrm{obsevations}}(y_i-(beta_0 + beta_1 \mathrm{caractéristique\ 1}+\dots + beta_p \mathrm{caractéristique\ p}))^2</span></p>
+<p>Où <span class="math inline">y_i</span> est le logarithme du loyer de l’observation <span class="math inline">i</span> . Aussi, si un logement voit son loyer relevé 4 fois, différence entre son loyer et l’estimation de celui-ci apparait 4 fois dans cette somme.</p>
+<p>On réalise une régression linéaire pondéré dont le programme de minimisation est :</p>
+<p><span class="math display">\min_{\beta_0,\dots,\beta_p}\sum_{i \in \mathrm{obsevations}}w_i(y_i-(beta_0 + beta_1 \mathrm{caractéristique\ 1}+\dots + beta_p \mathrm{caractéristique\ p}))^2</span></p>
+<p>où <span class="math inline">w_i</span> est le poids accordé à l’observation <span class="math inline">i</span>. On choisit comme poids pour l’observation <span class="math inline">i</span> , un sur le nombre de fois que le loyer du logement associé à été relevés. Dans l’exemple précédent où un logement voit son loyer relevé 4 fois, chaque observation de son loyer sera pondéré par 1/4.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
